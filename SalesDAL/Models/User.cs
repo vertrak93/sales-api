@@ -32,6 +32,16 @@ namespace SalesDAL.Models
         [Required, DefaultValue(true)]
         public bool Active { get; set; }
 
+        [Required, StringLength(100)]
+        public string? CreatedBy { get; set; }
+
+        [Required]
+        public DateTime? CreatedDate { get; set; }
+
+        public string? ModifiedBy { get; set; }
+
+        public DateTime? ModifiedDate { get; set; }
+
         public ICollection<UserRole>? UserRol { get; set; }
 
     }
