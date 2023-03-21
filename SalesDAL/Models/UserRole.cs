@@ -22,7 +22,20 @@ namespace SalesDAL.Models
         public int UserId { get; set; }
 
         [Required, DefaultValue(false)]
-        public bool Active { get; set; }
+        public bool? Active { get; set; }
+
+        #region Modify Control
+        [Required, StringLength(100)]
+        public string? CreatedBy { get; set; }
+
+        [Required]
+        public DateTime? CreatedDate { get; set; }
+
+        public string? ModifiedBy { get; set; }
+
+        public DateTime? ModifiedDate { get; set; }
+
+        #endregion
 
         public User User { get; set; }
         public Role Role { get; set; }

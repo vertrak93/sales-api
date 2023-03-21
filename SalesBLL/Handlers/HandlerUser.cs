@@ -135,11 +135,23 @@ namespace SalesBLL.Handlers
         public string Authenticate(AuthenticateDTO auth)
         {
             User user = ValidateLogin(auth);
-            string jwt = new GenerateToken().GenerateJWTToken(user);
+            var roles = GetRolesUser(user);
+            string jwt = new GenerateToken().GenerateJWTToken(user,roles);
 
             return jwt;
         }
 
+        public List<Role> GetRolesUser(User user)
+        {
+            var objRole = from a in _context.UserRole
+                          join b in _context.Role on new { a.RoleId, Active = true } equals new { b.RoleId, Active = (bool)b.Active }
+                          where a.UserId == user.UserId &&
+                                a.Active == true
+                          select b;
+
+            return objRole.ToList();
+
+        }
 
 
         #endregion

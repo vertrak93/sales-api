@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace SalesAPI.Controllers.UserService
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Administrator")]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -19,7 +19,7 @@ namespace SalesAPI.Controllers.UserService
         public UserController(MyDbContext dbcontext, IHttpContextAccessor contextAccessor)
         {
             _context = dbcontext;
-            _context.SetUsername(contextAccessor.HttpContext.User.Identities.First<ClaimsIdentity>());
+            _context.SetUsernameToContext(contextAccessor.HttpContext.User.Identities.First<ClaimsIdentity>());
             _userHandler = new HandlerUser(_context);
         }
         #endregion

@@ -30,8 +30,9 @@ namespace SalesDAL.Models
         public string Password { get; set; }
 
         [Required, DefaultValue(true)]
-        public bool Active { get; set; }
+        public bool? Active { get; set; }
 
+        #region Modify Control
         [Required, StringLength(100)]
         public string? CreatedBy { get; set; }
 
@@ -41,6 +42,8 @@ namespace SalesDAL.Models
         public string? ModifiedBy { get; set; }
 
         public DateTime? ModifiedDate { get; set; }
+
+        #endregion
 
         public ICollection<UserRole>? UserRol { get; set; }
 

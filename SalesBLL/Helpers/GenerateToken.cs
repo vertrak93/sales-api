@@ -12,15 +12,18 @@ namespace SalesBLL.Helpers
 {
     public class GenerateToken
     {
-        public string GenerateJWTToken(User user) 
+        public string GenerateJWTToken(User user, List<Role> roles) 
         {
-            var claims = new[]
+            var claims = new List<Claim>()
             {
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.Role, "Admin"), //pendiente de cambiar para cuando se implementen los roles a los usuarios
-                new Claim(ClaimTypes.Role, "Sales"),
+                new Claim(ClaimTypes.Email, user.Email)
             };
+
+            foreach (var role in roles) 
+            { 
+                claims.Add(new Claim(ClaimTypes.Role, role.RoleName)); 
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(new AppSettings().KeyJWT));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);

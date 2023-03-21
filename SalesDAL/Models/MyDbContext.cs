@@ -29,11 +29,21 @@ namespace SalesDAL.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Role>().HasData(
+                new Role() { RoleId = -1, RoleName = "Administrator", CreatedBy = "Admin", CreatedDate = DateTime.Now, Active = true }); 
+
             modelBuilder.Entity<User>().HasData(
-                new User() { UserId=-1, Active=true, FisrtName = "Admin", LastName = "Admin", Username = "Admin", Password = "39dc14dc1feac6be2702abb4e486f2bc755b0777c827457b24dae658f6266494", Email="admin@admin" });
+                new User() { UserId=-1, FisrtName = "Admin", LastName = "Admin", Username = "Admin", Password = "39dc14dc1feac6be2702abb4e486f2bc755b0777c827457b24dae658f6266494", Email="admin@admin", CreatedBy = "Admin", CreatedDate = DateTime.Now, Active = true });
+
+            modelBuilder.Entity<UserRole>().HasData(
+                new UserRole() { UserRolId = -1, RoleId = -1, UserId = -1, CreatedBy = "Admin", CreatedDate = DateTime.Now, Active = true } );
         }
 
-        public void SetUsername(ClaimsIdentity claims)
+        /// <summary>
+        /// Set the username in de DbContex from the client that call the API
+        /// </summary>
+        /// <param name="claims"></param>
+        public void SetUsernameToContext(ClaimsIdentity claims)
         {
             Username = claims.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
         }
