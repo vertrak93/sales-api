@@ -11,7 +11,7 @@ using SalesDAL.Models;
 
 namespace SalesDAL.Migrations
 {
-    [DbContext(typeof(MyDbContext))]
+    [DbContext(typeof(Models.MyDbContext))]
     [Migration("20230321050042_InitialMigration")]
     partial class InitialMigration
     {

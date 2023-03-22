@@ -14,11 +14,11 @@ namespace SalesAPI.Controllers.UserService
     {
         #region Constructor
         private MyDbContext _context;
-        private HandlerUser _userHandler;
+        private UserHandler _userHandler;
         public AuthenticateController(MyDbContext context)
         {
             _context = context;
-            _userHandler = new HandlerUser(_context);
+            _userHandler = new UserHandler(_context);
         }
         #endregion
 
