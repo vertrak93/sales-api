@@ -10,7 +10,7 @@ using SalesDAL.Models;
 
 namespace SalesDAL.Migrations
 {
-    [DbContext(typeof(MyDbContext))]
+    [DbContext(typeof(Models.MyDbContext))]
     partial class MyDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

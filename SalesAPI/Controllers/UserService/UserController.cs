@@ -15,12 +15,12 @@ namespace SalesAPI.Controllers.UserService
     {
         #region Constructor
         private MyDbContext _context;
-        private HandlerUser _userHandler;
+        private UserHandler _userHandler;
         public UserController(MyDbContext dbcontext, IHttpContextAccessor contextAccessor)
         {
             _context = dbcontext;
             _context.SetUsernameToContext(contextAccessor.HttpContext.User.Identities.First<ClaimsIdentity>());
-            _userHandler = new HandlerUser(_context);
+            _userHandler = new UserHandler(_context);
         }
         #endregion
 
