@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SalesBLL.Constants
+namespace SalesBLL.Enum
 {
     public class Messages
     {

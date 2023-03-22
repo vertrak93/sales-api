@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<DbContext>(options => 
+builder.Services.AddDbContext<MyDbContext>(options => 
     options.UseNpgsql(builder.Configuration.GetConnectionString("DbConexion")));
 
 builder.Services.AddHttpContextAccessor();

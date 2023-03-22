@@ -1,5 +1,5 @@
-﻿using SalesBLL.Constants;
-using SalesBLL.DTO;
+﻿using SalesBLL.DTO;
+using SalesBLL.Enum;
 using SalesBLL.Helpers;
 using SalesDAL.Models;
 using System;
@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace SalesBLL.Handlers
 {
-    public class UserHandler
+    public class HandlerUser
     {
         #region Constructor
         MyDbContext _context;
-        public UserHandler(MyDbContext context)
+        public HandlerUser(MyDbContext context)
         {
             _context = context;
         }
@@ -96,13 +96,13 @@ namespace SalesBLL.Handlers
 
         public void ValidatePasswordFormat(User user)
         {
-            var matchRegex = Regex.Match(user.Password, RegularExpressions.PasswordRegx);
+            var matchRegex = Regex.Match(user.Password, RegularExpressions.Password);
             if (!matchRegex.Success) { throw new Exception(Messages.FormatPasswordNotMatch); }
         }
 
         public void ValidateEmailFormat(User user)
         {
-            var matchRegex = Regex.Match(user.Email, RegularExpressions.EmailRegx);
+            var matchRegex = Regex.Match(user.Email, RegularExpressions.Email);
             if (!matchRegex.Success) { throw new Exception(Messages.FormatEmailNotMatch); }
         }
 
