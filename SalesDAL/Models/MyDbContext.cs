@@ -22,11 +22,6 @@ namespace SalesDAL.Models
 
         public MyDbContext(DbContextOptions<MyDbContext> options) :base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder builder)
-        {
-            builder.UseNpgsql("Server=127.0.0.1;Database=desa;Port=5432;User Id=migrations;Password=de$2s!3XN4;");
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Role>().HasData(

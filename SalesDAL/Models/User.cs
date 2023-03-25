@@ -29,16 +29,16 @@ namespace SalesDAL.Models
         [Required, StringLength(500)]
         public string Password { get; set; }
 
-        [Required, DefaultValue(true)]
-        public bool? Active { get; set; }
+        [DefaultValue(true)]
+        public bool Active { get; set; } = true;
 
         #region Modify Control
-        [Required, StringLength(100)]
+        [StringLength(100)]
         public string? CreatedBy { get; set; }
 
-        [Required]
         public DateTime? CreatedDate { get; set; }
 
+        [StringLength(100)]
         public string? ModifiedBy { get; set; }
 
         public DateTime? ModifiedDate { get; set; }

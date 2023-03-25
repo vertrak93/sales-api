@@ -54,7 +54,7 @@ namespace SalesAPI.Controllers.UserService
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] User usr)
+        public ActionResult Post(User usr)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace SalesAPI.Controllers.UserService
         }
 
         [HttpPatch]
-        public ActionResult Patch([FromBody] User usr)
+        public ActionResult Patch(User usr)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace SalesAPI.Controllers.UserService
 
         [HttpPatch]
         [Route("ChangePassword")]
-        public ActionResult ChangePassword([FromBody] User usr)
+        public ActionResult ChangePassword(User usr)
         {
             try
             {

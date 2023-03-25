@@ -36,6 +36,9 @@ namespace SalesBLL.Handlers
         {
             var objUser = user;
 
+            objUser.CreatedBy = _context.Username;
+            objUser.CreatedDate = DateTime.Now;
+
             ValidatePostUser(user);
 
             objUser.Password = Cryptography.GetSHA256(user.Password);
@@ -52,6 +55,8 @@ namespace SalesBLL.Handlers
                 objUser.FisrtName = user.FisrtName;
                 objUser.LastName = user.LastName;
                 objUser.Email= user.Email;
+                objUser.ModifiedBy = _context.Username;
+                objUser.ModifiedDate = DateTime.Now;
 
                 _context.SaveChanges();
             }
