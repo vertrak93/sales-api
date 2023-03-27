@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace SalesDAL.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class InitDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,9 +20,10 @@ namespace SalesDAL.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     AccessName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Active = table.Column<bool>(type: "boolean", nullable: false),
+                    Route = table.Column<string>(type: "text", nullable: true),
                     CreatedBy = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "text", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
@@ -40,7 +41,7 @@ namespace SalesDAL.Migrations
                     Active = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedBy = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "text", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
@@ -62,7 +63,7 @@ namespace SalesDAL.Migrations
                     Active = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedBy = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "text", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
@@ -81,7 +82,7 @@ namespace SalesDAL.Migrations
                     Active = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedBy = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "text", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
@@ -112,7 +113,7 @@ namespace SalesDAL.Migrations
                     Active = table.Column<bool>(type: "boolean", nullable: false),
                     CreatedBy = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    ModifiedBy = table.Column<string>(type: "text", nullable: true),
+                    ModifiedBy = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true)
                 },
                 constraints: table =>
@@ -135,17 +136,17 @@ namespace SalesDAL.Migrations
             migrationBuilder.InsertData(
                 table: "Role",
                 columns: new[] { "RoleId", "Active", "CreatedBy", "CreatedDate", "ModifiedBy", "ModifiedDate", "RoleName" },
-                values: new object[] { -1, true, "Admin", new DateTime(2023, 3, 20, 23, 0, 42, 661, DateTimeKind.Local).AddTicks(7734), null, null, "Administrator" });
+                values: new object[] { 1, true, "Admin", new DateTime(2023, 3, 26, 21, 22, 11, 743, DateTimeKind.Local).AddTicks(3698), null, null, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "UserId", "Active", "CreatedBy", "CreatedDate", "Email", "FisrtName", "LastName", "ModifiedBy", "ModifiedDate", "Password", "Username" },
-                values: new object[] { -1, true, "Admin", new DateTime(2023, 3, 20, 23, 0, 42, 661, DateTimeKind.Local).AddTicks(7914), "admin@admin", "Admin", "Admin", null, null, "39dc14dc1feac6be2702abb4e486f2bc755b0777c827457b24dae658f6266494", "Admin" });
+                values: new object[] { 1, true, "Admin", new DateTime(2023, 3, 26, 21, 22, 11, 743, DateTimeKind.Local).AddTicks(3839), "admin@admin", "Admin", "Admin", null, null, "39dc14dc1feac6be2702abb4e486f2bc755b0777c827457b24dae658f6266494", "Admin" });
 
             migrationBuilder.InsertData(
                 table: "UserRole",
                 columns: new[] { "UserRolId", "Active", "CreatedBy", "CreatedDate", "ModifiedBy", "ModifiedDate", "RoleId", "UserId" },
-                values: new object[] { -1, true, "Admin", new DateTime(2023, 3, 20, 23, 0, 42, 661, DateTimeKind.Local).AddTicks(7927), null, null, -1, -1 });
+                values: new object[] { 1, true, "Admin", new DateTime(2023, 3, 26, 21, 22, 11, 743, DateTimeKind.Local).AddTicks(3852), null, null, 1, 1 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AccessRole_AccessId",

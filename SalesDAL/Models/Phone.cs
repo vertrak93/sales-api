@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace SalesDAL.Models
 {
-    public class Access
+    public class Phone
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AccessId { get; set; }
+        public int PhoneId { get; set; }
 
-        [Required, StringLength(100)]
-        public string AccessName { get; set; }
+        [Required, MaxLength(100)]
+        public string PhoneNumber { get; set; }
 
-        [StringLength(200)]
-        public string? Route { get; set; }
+        [MaxLength(500)]
+        public string? Comment { get; set; }
 
         [DefaultValue(true)]
-        public bool? Active { get; set; }
+        public bool? Active { get; set; } = true;
 
         #region Modify Control
         [StringLength(100)]
@@ -35,8 +35,5 @@ namespace SalesDAL.Models
         public DateTime? ModifiedDate { get; set; }
 
         #endregion
-
-        public ICollection<AccessRole>? AccessRole { get; set;}
-
     }
 }

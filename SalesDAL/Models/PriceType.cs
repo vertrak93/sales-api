@@ -3,25 +3,23 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace SalesDAL.Models
 {
-    public class Access
+    public class PriceType
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AccessId { get; set; }
+        public int PriceTypeId { get; set; }
 
-        [Required, StringLength(100)]
-        public string AccessName { get; set; }
-
-        [StringLength(200)]
-        public string? Route { get; set; }
+        [Required, MaxLength(100)]
+        public string PriceTypeName { get; set; }
 
         [DefaultValue(true)]
-        public bool? Active { get; set; }
+        public bool? Active {get; set;}
 
         #region Modify Control
         [StringLength(100)]
@@ -35,8 +33,5 @@ namespace SalesDAL.Models
         public DateTime? ModifiedDate { get; set; }
 
         #endregion
-
-        public ICollection<AccessRole>? AccessRole { get; set;}
-
     }
 }

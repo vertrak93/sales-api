@@ -21,8 +21,8 @@ namespace SalesDAL.Models
         [Required]
         public int UserId { get; set; }
 
-        [Required, DefaultValue(false)]
-        public bool? Active { get; set; }
+        [DefaultValue(false)]
+        public bool? Active { get; set; } = true;
 
         #region Modify Control
         [StringLength(100)]

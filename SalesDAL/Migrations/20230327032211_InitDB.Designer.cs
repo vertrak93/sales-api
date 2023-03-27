@@ -11,9 +11,9 @@ using SalesDAL.Models;
 
 namespace SalesDAL.Migrations
 {
-    [DbContext(typeof(Models.MyDbContext))]
-    [Migration("20230321050042_InitialMigration")]
-    partial class InitialMigration
+    [DbContext(typeof(MyDbContext))]
+    [Migration("20230327032211_InitDB")]
+    partial class InitDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,10 +52,14 @@ namespace SalesDAL.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Route")
+                        .HasColumnType("text");
 
                     b.HasKey("AccessId");
 
@@ -87,7 +91,8 @@ namespace SalesDAL.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -126,7 +131,8 @@ namespace SalesDAL.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -143,10 +149,10 @@ namespace SalesDAL.Migrations
                     b.HasData(
                         new
                         {
-                            RoleId = -1,
+                            RoleId = 1,
                             Active = true,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 3, 20, 23, 0, 42, 661, DateTimeKind.Local).AddTicks(7734),
+                            CreatedDate = new DateTime(2023, 3, 26, 21, 22, 11, 743, DateTimeKind.Local).AddTicks(3698),
                             RoleName = "Administrator"
                         });
                 });
@@ -159,8 +165,7 @@ namespace SalesDAL.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserId"));
 
-                    b.Property<bool?>("Active")
-                        .IsRequired()
+                    b.Property<bool>("Active")
                         .HasColumnType("boolean");
 
                     b.Property<string>("CreatedBy")
@@ -188,7 +193,8 @@ namespace SalesDAL.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -210,10 +216,10 @@ namespace SalesDAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = -1,
+                            UserId = 1,
                             Active = true,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 3, 20, 23, 0, 42, 661, DateTimeKind.Local).AddTicks(7914),
+                            CreatedDate = new DateTime(2023, 3, 26, 21, 22, 11, 743, DateTimeKind.Local).AddTicks(3839),
                             Email = "admin@admin",
                             FisrtName = "Admin",
                             LastName = "Admin",
@@ -244,7 +250,8 @@ namespace SalesDAL.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("ModifiedBy")
-                        .HasColumnType("text");
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("timestamp without time zone");
@@ -266,12 +273,12 @@ namespace SalesDAL.Migrations
                     b.HasData(
                         new
                         {
-                            UserRolId = -1,
+                            UserRolId = 1,
                             Active = true,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 3, 20, 23, 0, 42, 661, DateTimeKind.Local).AddTicks(7927),
-                            RoleId = -1,
-                            UserId = -1
+                            CreatedDate = new DateTime(2023, 3, 26, 21, 22, 11, 743, DateTimeKind.Local).AddTicks(3852),
+                            RoleId = 1,
+                            UserId = 1
                         });
                 });
 

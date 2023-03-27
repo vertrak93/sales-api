@@ -71,11 +71,28 @@ namespace SalesBLL.Handlers
             {
                 var newPassword = Cryptography.GetSHA256(user.Password);
                 objUser.Password = newPassword;
-             
+                objUser.ModifiedBy = _context.Username;
+                objUser.ModifiedDate = DateTime.Now;
+
                 _context.SaveChanges();
             }
 
         }
+
+        public void Delete(int id)
+        {
+            var objUser = _context.User.Where(obj => obj.UserId == id).FirstOrDefault();
+
+            if (objUser != null)
+            {
+                _context.SetModifier<User>(objUser);
+                objUser.Active = false;
+                    
+                _context.SaveChanges();
+            }
+
+        }
+
 
         #region Validations
 

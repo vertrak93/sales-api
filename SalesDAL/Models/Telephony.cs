@@ -9,19 +9,16 @@ using System.Threading.Tasks;
 
 namespace SalesDAL.Models
 {
-    public class Access
+    public class Telephony
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AccessId { get; set; }
+        public int TelephonyId { get; set; }
 
-        [Required, StringLength(100)]
-        public string AccessName { get; set; }
-
-        [StringLength(200)]
-        public string? Route { get; set; }
+        [Required, MaxLength(100)]
+        public string TelephonyName { get; set;}
 
         [DefaultValue(true)]
-        public bool? Active { get; set; }
+        public bool? Active { get; set; } = true;
 
         #region Modify Control
         [StringLength(100)]
@@ -36,7 +33,6 @@ namespace SalesDAL.Models
 
         #endregion
 
-        public ICollection<AccessRole>? AccessRole { get; set;}
-
+        public ICollection<Phone>? Phone { get; set; }
     }
 }

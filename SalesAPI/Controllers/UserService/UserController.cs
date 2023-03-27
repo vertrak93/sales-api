@@ -95,5 +95,20 @@ namespace SalesAPI.Controllers.UserService
                 return Ok(ApiResponseDTO.HandlerError(ex));
             }
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public ActionResult Delete(int id)
+        {
+            try
+            {
+                _userHandler.Delete(id);
+                return Ok(new ApiResponseDTO());
+            }
+            catch (Exception ex)
+            {
+                return Ok(ApiResponseDTO.HandlerError(ex));
+            }
+        }
     }
 }
