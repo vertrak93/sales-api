@@ -17,10 +17,10 @@ namespace SalesDAL.Models
         [Required]
         public int TelephonyId { get; set; }
 
-        [Required, MaxLength(100)]
+        [Required, StringLength(100)]
         public string PhoneNumber { get; set; }
 
-        [MaxLength(500)]
+        [StringLength(500)]
         public string? Comment { get; set; }
 
         [DefaultValue(true)]
@@ -40,5 +40,7 @@ namespace SalesDAL.Models
         #endregion
 
         public Telephony? Telephony { get; set; }
+
+        public ICollection<VendorPhone>? VendorPhone { get; set;}
     }
 }

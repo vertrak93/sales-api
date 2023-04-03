@@ -17,7 +17,7 @@ namespace SalesDAL.Models
         [Required]
         public int BankId { get; set; }
 
-        [Required]
+        [Required, StringLength(100)]
         public string AccountNumber { get; set; }
 
         [DefaultValue(true)]

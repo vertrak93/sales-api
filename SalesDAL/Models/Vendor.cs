@@ -37,5 +37,7 @@ namespace SalesDAL.Models
         #endregion
 
         public ICollection<VendorBankAccount>? VendorBankAccount { get; set; }
+        public ICollection<VendorPhone>? VendorPhone { get; set; }
+        public ICollection<VendorAddress>? VendorAddress { get; set; }
     }
 }

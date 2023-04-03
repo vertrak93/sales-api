@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
 
 namespace SalesDAL.Models
 {
-    public  class Category
+    public class VendorAddress
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CategoryId { get; set; }
+        public int VendorAddressId { get; set; }
 
-        [Required, StringLength(100)]
-        public string CategoryName { get; set; }
+        [Required]
+        public int VendorId { get; set; }
 
-        [DefaultValue(true)]
-        public bool? Active { get; set; } = true;
+        [Required]
+        public int AddressID { get; set; }
 
         #region Modify Control
+
+        [DefaultValue(true)]
+        public bool? Active { get; set; }
+
         [StringLength(100)]
         public string? CreatedBy { get; set; }
 
@@ -33,6 +37,8 @@ namespace SalesDAL.Models
 
         #endregion
 
-        public ICollection<SubCategory>? SubCategory { get; set; } 
+        public Vendor? Vendor { get; set; }
+        public Address? Address { get; set; }
+
     }
 }

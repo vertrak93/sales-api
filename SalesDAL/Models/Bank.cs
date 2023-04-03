@@ -14,7 +14,7 @@ namespace SalesDAL.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BankId { get; set; }
 
-        [Required, MaxLength(100)]
+        [Required, StringLength(100)]
         public string BankName { get; set; }
 
         [DefaultValue(true)]

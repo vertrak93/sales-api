@@ -13,7 +13,8 @@ namespace SalesDAL.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int AddressID { get; set; }
-        [Required]
+
+        [Required, StringLength(200)]
         public string AddressDescription { get; set; }
         
         [DefaultValue(true)]
@@ -31,5 +32,7 @@ namespace SalesDAL.Models
         public DateTime? ModifiedDate { get; set; }
 
         #endregion
+
+        public ICollection<VendorAddress>? VendorAddress { get; set; }
     }
 }

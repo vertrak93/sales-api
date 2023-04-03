@@ -14,7 +14,7 @@ namespace SalesDAL.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TelephonyId { get; set; }
 
-        [Required, MaxLength(100)]
+        [Required, StringLength(100)]
         public string TelephonyName { get; set;}
 
         [DefaultValue(true)]

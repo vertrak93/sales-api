@@ -14,7 +14,7 @@ namespace SalesDAL.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BrandId { get; set; }
 
-        [Required, MaxLength(100)]
+        [Required, StringLength(100)]
         public int BrandName { get; set; }
 
         [DefaultValue(true)]
@@ -32,5 +32,7 @@ namespace SalesDAL.Models
         public DateTime? ModifiedDate { get; set; }
 
         #endregion
+
+        public ICollection<Product>? Product { get; set; }
     }
 }

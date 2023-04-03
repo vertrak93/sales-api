@@ -15,7 +15,7 @@ namespace SalesDAL.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PriceTypeId { get; set; }
 
-        [Required, MaxLength(100)]
+        [Required, StringLength(100)]
         public string PriceTypeName { get; set; }
 
         [DefaultValue(true)]

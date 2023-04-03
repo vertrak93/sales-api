@@ -15,16 +15,16 @@ namespace SalesDAL.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ClientId { get; set; }
 
-        [Required, MaxLength(50)]
+        [Required, StringLength(50)]
         public string ClientFirstName { get; set; }
 
-        [Required, MaxLength(50)]
+        [Required, StringLength(50)]
         public string ClientLastName { get; set; }
 
-        [Required, MaxLength(100)]
+        [Required, StringLength(100)]
         public string ClientFullName { get; set; }
 
-        [Required, MaxLength(50)]
+        [Required, StringLength(50)]
         public string ClientNIT { get; set; }
 
         [DefaultValue(true)]

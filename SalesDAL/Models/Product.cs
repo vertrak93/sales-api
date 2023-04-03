@@ -9,21 +9,37 @@ using System.Threading.Tasks;
 
 namespace SalesDAL.Models
 {
-    public class SubCategory
+    public class Product
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ProductId { get; set; }
+
+        [Required]
         public int SubCategoryId { get; set; }
 
         [Required]
-        public int CategoryId { get; set; }
+        public int BrandId { get; set; }
+
+        [Required]
+        public int PresentationId { get; set; }
 
         [Required, StringLength(100)]
-        public string NameSubCatagory { get; set; }
+        public string ProductName { get; set; }
+
+        [StringLength(100)]
+        public string SKU { get; set; }
+
+        [Required]
+        public decimal MinumunStock { get; set; }
+
+        [DefaultValue(false)]
+        public bool? IsContainer { get; set; }
+
+        #region Modify Control
 
         [DefaultValue(true)]
         public bool? Active { get; set; }
 
-        #region Modify Control
         [StringLength(100)]
         public string? CreatedBy { get; set; }
 
@@ -36,8 +52,10 @@ namespace SalesDAL.Models
 
         #endregion
 
-        public Category? Category { get; set; }
+        public SubCategory? SubCategory { get; set; }  
+        public Brand? Brand { get; set; }
+        public Presentation? Presentation { get; set; }
 
-        public ICollection<Product>? Product { get; set; }
+
     }
 }
