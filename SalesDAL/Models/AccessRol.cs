@@ -37,9 +37,9 @@ namespace SalesDAL.Models
 
         #endregion
 
-        public Access Access { get; set; }
+        public Access? Access { get; set; }
 
-        public Role Role { get; set; }
+        public Role? Role { get; set; }
         
 
     }

@@ -28,7 +28,7 @@ namespace SalesDAL.Models
         public string ClientNIT { get; set; }
 
         [DefaultValue(true)]
-        public bool Active { get; set; } = true;
+        public bool? Active { get; set; } = true;
 
         #region Modify Control
         [StringLength(100)]

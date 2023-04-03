@@ -21,7 +21,7 @@ namespace SalesDAL.Models
         public string TIN { get; set; } //Taxpayer Identification Number
 
         [DefaultValue(true)]
-        public bool Active { get; set; }
+        public bool? Active { get; set; }
 
         #region Modify Control
         [StringLength(100)]
@@ -35,5 +35,7 @@ namespace SalesDAL.Models
         public DateTime? ModifiedDate { get; set; }
 
         #endregion
+
+        public ICollection<VendorBankAccount>? VendorBankAccount { get; set; }
     }
 }

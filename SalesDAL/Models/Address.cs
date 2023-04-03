@@ -9,16 +9,15 @@ using System.Threading.Tasks;
 
 namespace SalesDAL.Models
 {
-    public class Bank
+    public class Address
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int BankId { get; set; }
-
-        [Required, MaxLength(100)]
-        public string BankName { get; set; }
-
+        public int AddressID { get; set; }
+        [Required]
+        public string AddressDescription { get; set; }
+        
         [DefaultValue(true)]
-        public bool? Active { get; set; } = true;
+        public bool? Active { get; set; }
 
         #region Modify Control
         [StringLength(100)]
@@ -32,8 +31,5 @@ namespace SalesDAL.Models
         public DateTime? ModifiedDate { get; set; }
 
         #endregion
-
-        public ICollection<BankAccount>? BankAccount { get; set; }
-
     }
 }

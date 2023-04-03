@@ -17,7 +17,9 @@ namespace SalesDAL.Models
 
         public DbSet<Access> Access { get; set; }
         public DbSet<AccessRole> AccessRole { get; set; }
+        public DbSet<Address> Address { get; set; } 
         public DbSet<Bank> Bank { get; set; }
+        public DbSet<BankAccount> BankAccount { get; set; }
         public DbSet<Brand> Brand { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Client> Client { get; set; }
@@ -25,10 +27,13 @@ namespace SalesDAL.Models
         public DbSet<Presentation> Presentation { get; set; }
         public DbSet<PriceType> PriceType { get; set; }
         public DbSet<Role> Role { get; set; }
+        public DbSet<SubCategory> SubCategory { get; set; }
         public DbSet<Telephony> Telephony { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserRole> UserRole { get; set; }
         public DbSet<Vendor> Vendor { get; set; }
+        public DbSet<VendorBankAccount> VendorBankAccount { get; set; }
+
 
         public MyDbContext(DbContextOptions<MyDbContext> options) :base(options) { }
 
@@ -42,9 +47,17 @@ namespace SalesDAL.Models
             modelBuilder.Entity<AccessRole>().Property(s => s.CreatedBy).IsRequired();
             modelBuilder.Entity<AccessRole>().Property(s => s.CreatedDate).IsRequired();
 
+            modelBuilder.Entity<Address>().Property(s => s.Active).IsRequired();
+            modelBuilder.Entity<Address>().Property(s => s.CreatedBy).IsRequired();
+            modelBuilder.Entity<Address>().Property(s => s.CreatedDate).IsRequired();
+
             modelBuilder.Entity<Bank>().Property(s => s.Active).IsRequired();
             modelBuilder.Entity<Bank>().Property(s => s.CreatedBy).IsRequired();
             modelBuilder.Entity<Bank>().Property(s => s.CreatedDate).IsRequired();
+
+            modelBuilder.Entity<BankAccount>().Property(s => s.Active).IsRequired();
+            modelBuilder.Entity<BankAccount>().Property(s => s.CreatedBy).IsRequired();
+            modelBuilder.Entity<BankAccount>().Property(s => s.CreatedDate).IsRequired();
 
             modelBuilder.Entity<Brand>().Property(s => s.Active).IsRequired();
             modelBuilder.Entity<Brand>().Property(s => s.CreatedBy).IsRequired();
@@ -74,6 +87,10 @@ namespace SalesDAL.Models
             modelBuilder.Entity<Role>().Property(s => s.CreatedBy).IsRequired();
             modelBuilder.Entity<Role>().Property(s => s.CreatedDate).IsRequired();
 
+            modelBuilder.Entity<SubCategory>().Property(s => s.Active).IsRequired();
+            modelBuilder.Entity<SubCategory>().Property(s => s.CreatedBy).IsRequired();
+            modelBuilder.Entity<SubCategory>().Property(s => s.CreatedDate).IsRequired();
+
             modelBuilder.Entity<Telephony>().Property(s => s.Active).IsRequired();
             modelBuilder.Entity<Telephony>().Property(s => s.CreatedBy).IsRequired();
             modelBuilder.Entity<Telephony>().Property(s => s.CreatedDate).IsRequired();
@@ -90,7 +107,9 @@ namespace SalesDAL.Models
             modelBuilder.Entity<Vendor>().Property(s => s.CreatedBy).IsRequired();
             modelBuilder.Entity<Vendor>().Property(s => s.CreatedDate).IsRequired();
 
-
+            modelBuilder.Entity<VendorBankAccount>().Property(s => s.Active).IsRequired();
+            modelBuilder.Entity<VendorBankAccount>().Property(s => s.CreatedBy).IsRequired();
+            modelBuilder.Entity<VendorBankAccount>().Property(s => s.CreatedDate).IsRequired();
 
             modelBuilder.Entity<Role>().HasData(
                 new Role() { RoleId = 1, RoleName = "Administrator", CreatedBy = "Admin", CreatedDate = DateTime.Now, Active = true }); 

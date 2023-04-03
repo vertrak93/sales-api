@@ -14,6 +14,9 @@ namespace SalesDAL.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PhoneId { get; set; }
 
+        [Required]
+        public int TelephonyId { get; set; }
+
         [Required, MaxLength(100)]
         public string PhoneNumber { get; set; }
 
@@ -35,5 +38,7 @@ namespace SalesDAL.Models
         public DateTime? ModifiedDate { get; set; }
 
         #endregion
+
+        public Telephony? Telephony { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace SalesBLL.Handlers
         }
         #endregion
 
+        #region Get Methods
         public List<User> Get()
         {
             return _context.User.ToList();
@@ -31,17 +32,17 @@ namespace SalesBLL.Handlers
         {
             return _context.User.Where(obj => obj.UserId == id ).FirstOrDefault();
         }
+        #endregion
 
+        #region Update-Insert Methods
         public void Post(User user) 
         {
             var objUser = user;
 
-            objUser.CreatedBy = _context.Username;
-            objUser.CreatedDate = DateTime.Now;
-
             ValidatePostUser(user);
-
             objUser.Password = Cryptography.GetSHA256(user.Password);
+            _context.SetCreator<User>(user);
+
             _context.User.Add(objUser);
             _context.SaveChanges();
         }
@@ -54,9 +55,8 @@ namespace SalesBLL.Handlers
             {
                 objUser.FisrtName = user.FisrtName;
                 objUser.LastName = user.LastName;
-                objUser.Email= user.Email;
-                objUser.ModifiedBy = _context.Username;
-                objUser.ModifiedDate = DateTime.Now;
+                objUser.Email = user.Email;
+                _context.SetModifier<User>(objUser);
 
                 _context.SaveChanges();
             }
@@ -71,8 +71,7 @@ namespace SalesBLL.Handlers
             {
                 var newPassword = Cryptography.GetSHA256(user.Password);
                 objUser.Password = newPassword;
-                objUser.ModifiedBy = _context.Username;
-                objUser.ModifiedDate = DateTime.Now;
+                _context.SetModifier<User>(objUser);
 
                 _context.SaveChanges();
             }
@@ -92,7 +91,7 @@ namespace SalesBLL.Handlers
             }
 
         }
-
+        #endregion
 
         #region Validations
 

@@ -32,5 +32,7 @@ namespace SalesDAL.Models
         public DateTime? ModifiedDate { get; set; }
 
         #endregion
+
+        public ICollection<SubCategory>? SubCategory { get; set; } 
     }
 }
