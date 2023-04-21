@@ -12,7 +12,7 @@ namespace SalesDAL.Models
     public class Address
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int AddressID { get; set; }
+        public int AddressId { get; set; }
 
         [Required, StringLength(200)]
         public string AddressDescription { get; set; }

@@ -18,7 +18,7 @@ namespace SalesDAL.Models
         public int VendorId { get; set; }
 
         [Required]
-        public int AddressID { get; set; }
+        public int AddressId { get; set; }
 
         #region Modify Control
 
