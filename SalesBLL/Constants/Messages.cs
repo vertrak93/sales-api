@@ -24,5 +24,7 @@ namespace SalesBLL.Constants
         public static readonly string ErrorAuthenticate = "Nombre de usuario o contraseña incorrecta.";
 
         #endregion
+
+
     }
 }

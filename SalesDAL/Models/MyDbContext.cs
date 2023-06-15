@@ -27,6 +27,7 @@ namespace SalesDAL.Models
         public DbSet<Presentation> Presentation { get; set; }
         public DbSet<PriceType> PriceType { get; set; }
         public DbSet<Product> Product { get; set; }
+        public DbSet<RefreshToken> RefreshToken { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<SubCategory> SubCategory { get; set; }
         public DbSet<Telephony> Telephony { get; set; }
@@ -91,6 +92,8 @@ namespace SalesDAL.Models
             modelBuilder.Entity<Product>().Property(s => s.Active).IsRequired();
             modelBuilder.Entity<Product>().Property(s => s.CreatedBy).IsRequired();
             modelBuilder.Entity<Product>().Property(s => s.CreatedDate).IsRequired();
+
+            modelBuilder.Entity<RefreshToken>().Property(s => s.Active).IsRequired();
 
             modelBuilder.Entity<Role>().Property(s => s.Active).IsRequired();
             modelBuilder.Entity<Role>().Property(s => s.CreatedBy).IsRequired();

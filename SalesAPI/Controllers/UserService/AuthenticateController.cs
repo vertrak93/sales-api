@@ -19,6 +19,7 @@ namespace SalesAPI.Controllers.UserService
         {
             _context = context;
             _userHandler = new UserHandler(_context);
+            _
         }
         #endregion
 
@@ -29,11 +30,26 @@ namespace SalesAPI.Controllers.UserService
             try
             {
                 var result = _userHandler.Authenticate(auth);
-                return Ok(new ApiResponseDTO { DATA = new { jwt = result } });
+                return Ok(new ApiResponseDTO { DATA = result });
             }
             catch (Exception ex)
             {
                 return Ok(ApiResponseDTO.HandlerError(ex));
+            }
+        }
+
+        [HttpPost]
+        [Route("")]
+        public ActionResult RefresToken([FromBody]TokenDTO tokens) 
+        {
+            try
+            {
+                var result = new TokenHandler(_context).RefreshToken(tokens);
+                return Ok(new ApiResponseDTO { DATA = result });
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
             }
         }
     }

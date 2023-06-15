@@ -153,13 +153,15 @@ namespace SalesBLL.Handlers
 
         #region Authenticate
 
-        public string Authenticate(AuthenticateDTO auth)
+        public TokenDTO Authenticate(AuthenticateDTO auth)
         {
+            TokenDTO tokens = new TokenDTO();
             User user = ValidateLogin(auth);
             var roles = GetRolesUser(user);
-            string jwt = new GenerateToken().GenerateJWTToken(user,roles);
+            tokens.AccessToken = new GenerateToken().GenerateJWTToken(user,roles);
+            tokens.RefreshToken = new TokenHandler(_context).CreateRefreshToken(user.Username);
 
-            return jwt;
+            return tokens;
         }
 
         public List<Role> GetRolesUser(User user)
