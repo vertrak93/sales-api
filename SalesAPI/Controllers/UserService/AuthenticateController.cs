@@ -19,7 +19,6 @@ namespace SalesAPI.Controllers.UserService
         {
             _context = context;
             _userHandler = new UserHandler(_context);
-            _
         }
         #endregion
 
