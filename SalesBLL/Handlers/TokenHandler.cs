@@ -1,4 +1,5 @@
-﻿using SalesBLL.DTO;
+﻿using SalesBLL.Constants;
+using SalesBLL.DTO;
 using SalesBLL.Helpers;
 using SalesDAL.Models;
 using System;
@@ -21,6 +22,27 @@ namespace SalesBLL.Handlers
         #endregion
 
         #region Methods
+
+        #region Authenticate
+
+        public TokenDTO Authenticate(AuthenticateDTO auth)
+        {
+            TokenDTO tokens = new TokenDTO();
+
+            var userHandler = new UserHandler(_context);
+
+            User user = userHandler.ValidateLogin(auth);
+            var roles = userHandler.GetRolesUser(user);
+
+            tokens.AccessToken = new GenerateToken().GenerateJWTToken(user, roles);
+            tokens.RefreshToken = CreateRefreshToken(user.Username);
+
+            return tokens;
+        }
+
+        #endregion
+
+        #region Refresh Token
         public void PostRefreshToken(RefreshToken refreshToken)
         {
             _context.RefreshToken.Add(refreshToken);
@@ -28,24 +50,30 @@ namespace SalesBLL.Handlers
         }
 
         public void PatchRefreshToken(RefreshToken refreshToken)
-        {
-            var objToken = _context.RefreshToken.Where(obj => obj.RefreshTokenId == refreshToken.RefreshTokenId).FirstOrDefault();
-            
-            if (objToken != null)
+        {   
+            if (refreshToken != null)
             {
-                objToken = refreshToken;
-                _context.Update(objToken);
+                _context.Update(refreshToken);
                 _context.SaveChanges();
             }
         }
 
-        public List<RefreshToken> GetRefreshToken(string token)
+        public RefreshToken GetRefreshToken(string token)
         {
-            var objToken = from a in _context.RefreshToken
+            var objToken = (from a in _context.RefreshToken
                            where a.Token == token && a.Active == true
-                           select a;
+                           select a).ToList().FirstOrDefault();
 
-            return objToken.ToList();
+            if (objToken != null)
+            {
+                var objUser = (from a in _context.User
+                               where a.UserId == objToken.UserId && a.Active == true
+                               select a).ToList().FirstOrDefault();
+
+                objToken.User = objUser;
+            }
+
+            return objToken;
         }
 
         public TokenDTO RefreshToken(TokenDTO tokens)
@@ -53,16 +81,16 @@ namespace SalesBLL.Handlers
             TokenDTO newTokens = new TokenDTO();
             var principal = new GenerateToken().GetClaimsPrincipalExpiredToken(tokens.AccessToken);
 
-            var objToken = GetRefreshToken(tokens.RefreshToken).FirstOrDefault();
+            var objToken = GetRefreshToken(tokens.RefreshToken);
 
             if(objToken.User.Username != principal.Identity.Name)
             {
-                throw new Exception("Invalid User");
+                throw new Exception(Messages.InvalidUser);
             }
 
             if(objToken.Expiration < DateTime.UtcNow)
             {
-                throw new Exception("Token Expired");
+                throw new Exception(Messages.TokenExpired);
             }
 
             objToken.Active = false;
@@ -84,7 +112,7 @@ namespace SalesBLL.Handlers
             RefreshToken refreshToken = new RefreshToken();
             string token = new GenerateToken().GenerateRefreshToken();
 
-            refreshToken.UserdId = user.UserId;
+            refreshToken.UserId = user.UserId;
             refreshToken.Token = token;
             refreshToken.Expiration = now.AddHours(5);
             refreshToken.Active= true;
@@ -95,10 +123,6 @@ namespace SalesBLL.Handlers
         }
 
         #endregion
-
-        #region Validations
-
- 
 
         #endregion
     }

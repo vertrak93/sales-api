@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SalesDAL.Models;
@@ -11,9 +12,11 @@ using SalesDAL.Models;
 namespace SalesDAL.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230620040311_AddToken")]
+    partial class AddToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -560,7 +563,10 @@ namespace SalesDAL.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserdId")
                         .HasColumnType("integer");
 
                     b.HasKey("RefreshTokenId");
@@ -613,7 +619,7 @@ namespace SalesDAL.Migrations
                             RoleId = 1,
                             Active = true,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 6, 19, 22, 15, 59, 585, DateTimeKind.Local).AddTicks(3252),
+                            CreatedDate = new DateTime(2023, 6, 19, 22, 3, 11, 786, DateTimeKind.Local).AddTicks(5843),
                             RoleName = "Administrator"
                         });
                 });
@@ -762,7 +768,7 @@ namespace SalesDAL.Migrations
                             UserId = 1,
                             Active = true,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 6, 19, 22, 15, 59, 585, DateTimeKind.Local).AddTicks(3472),
+                            CreatedDate = new DateTime(2023, 6, 19, 22, 3, 11, 786, DateTimeKind.Local).AddTicks(6013),
                             Email = "admin@admin",
                             FisrtName = "Admin",
                             LastName = "Admin",
@@ -819,7 +825,7 @@ namespace SalesDAL.Migrations
                             UserRolId = 1,
                             Active = true,
                             CreatedBy = "Admin",
-                            CreatedDate = new DateTime(2023, 6, 19, 22, 15, 59, 585, DateTimeKind.Local).AddTicks(3487),
+                            CreatedDate = new DateTime(2023, 6, 19, 22, 3, 11, 786, DateTimeKind.Local).AddTicks(6026),
                             RoleId = 1,
                             UserId = 1
                         });
@@ -1075,9 +1081,7 @@ namespace SalesDAL.Migrations
                 {
                     b.HasOne("SalesDAL.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });

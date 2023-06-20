@@ -24,7 +24,7 @@ namespace SalesBLL.Handlers
 
         public Address? Get(int id)
         {
-            return _context.Address.Where(obj => obj.AddressID == id).FirstOrDefault();
+            return _context.Address.Where(obj => obj.AddressId == id).FirstOrDefault();
         }
 
         public void Post(Address address)
@@ -43,7 +43,7 @@ namespace SalesBLL.Handlers
 
         public void Delete(int id)
         {
-            var objAddress = _context.Address.Where(obj => obj.AddressID == id).FirstOrDefault();
+            var objAddress = _context.Address.Where(obj => obj.AddressId == id).FirstOrDefault();
             objAddress.Active = false;
             _context.Address.Update(objAddress);
             _context.SaveChanges();

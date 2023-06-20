@@ -151,18 +151,7 @@ namespace SalesBLL.Handlers
 
         #endregion
 
-        #region Authenticate
-
-        public TokenDTO Authenticate(AuthenticateDTO auth)
-        {
-            TokenDTO tokens = new TokenDTO();
-            User user = ValidateLogin(auth);
-            var roles = GetRolesUser(user);
-            tokens.AccessToken = new GenerateToken().GenerateJWTToken(user,roles);
-            tokens.RefreshToken = new TokenHandler(_context).CreateRefreshToken(user.Username);
-
-            return tokens;
-        }
+        #region Roles
 
         public List<Role> GetRolesUser(User user)
         {

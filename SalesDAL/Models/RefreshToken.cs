@@ -16,7 +16,7 @@ namespace SalesDAL.Models
         public int RefreshTokenId { get; set; }
 
         [Required]
-        public int UserdId { get; set; }
+        public int UserId { get; set; }
 
         [Required]
         public DateTime Expiration { get; set; }

@@ -8,17 +8,15 @@ using SalesDAL.Models;
 namespace SalesAPI.Controllers.UserService
 {
     [AllowAnonymous]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class AuthenticateController : ControllerBase
     {
         #region Constructor
         private MyDbContext _context;
-        private UserHandler _userHandler;
         public AuthenticateController(MyDbContext context)
         {
             _context = context;
-            _userHandler = new UserHandler(_context);
         }
         #endregion
 
@@ -28,18 +26,18 @@ namespace SalesAPI.Controllers.UserService
         {
             try
             {
-                var result = _userHandler.Authenticate(auth);
+                var result = new TokenHandler(_context).Authenticate(auth);
                 return Ok(new ApiResponseDTO { DATA = result });
             }
             catch (Exception ex)
             {
-                return Ok(ApiResponseDTO.HandlerError(ex));
+                return BadRequest(ApiResponseDTO.HandlerError(ex));
             }
         }
 
         [HttpPost]
-        [Route("")]
-        public ActionResult RefresToken([FromBody]TokenDTO tokens) 
+        [Route("RefreshToken")]
+        public ActionResult RefreshToken([FromBody]TokenDTO tokens) 
         {
             try
             {

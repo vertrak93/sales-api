@@ -22,6 +22,9 @@ namespace SalesBLL.Constants
 
         public static readonly string UserDontExist = "El nombre de usuario no existe en el sistema.";
         public static readonly string ErrorAuthenticate = "Nombre de usuario o contraseña incorrecta.";
+        public static readonly string InvalidUser = "Invalid User";
+        public static readonly string TokenExpired = "Token Expired";
+        public static readonly string InvalidToken = "Invalid Token";
 
         #endregion
 
